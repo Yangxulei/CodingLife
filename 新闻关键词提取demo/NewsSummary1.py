@@ -7,9 +7,6 @@ from heapq import nlargest
 
 
 
-stopwords = set(stopwords.words('english') + list(punctuation))
-max_cut = 0.9
-min_cut = 0.1
 
 def compute_frequencies(word_sent):
     """
