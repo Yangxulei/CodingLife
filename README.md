@@ -1,8 +1,8 @@
 # CodingLife
  
 一些好玩的  
-*新闻关键词提出*   
-//使用TextRank算法 2048_python.py    
+*News_Keyword_extraction*     
+//使用TextRank算法      
 
 *2048_python.py*    
 //状态机的概念. 用字典的模式实现状态和函数的对应. 可以加深对语言的理解. 其中矩阵的变换也很精巧
