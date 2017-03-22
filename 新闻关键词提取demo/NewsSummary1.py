@@ -12,6 +12,11 @@ min_cut = 0.1
 
 
 def compute_frequencies(word_sent):
+    """
+    计算出每个词出现的频率
+    :param word_sent: 是一个已经分好词的列表
+    :return: 一个词典freq[], freq[w]代表了w出现的频率
+    """
 
     freq = defaultdict(int)
     for s in word_sent:
