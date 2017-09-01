@@ -1,0 +1,159 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'css/semantic.css' %}" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="{% static  'css/list_custom.css' %}" media="screen" title="no title" charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="ui inverted top fixed menu borderless red menu">
+        <div class="header item">
+
+            <h3><a href="#" style="color:White">TEN MINS</a></h3>
+        </div>
+
+        <div class="item">
+          <form class="ui form" action="{% url 'search' %}" method="get">
+            <div class="field">
+              <div class="ui transparent inverted left icon input">
+                <input type="text" name="name" value="" placeholder="搜索你感兴趣的内容..." style="color:white">
+                <i class="search icon"></i>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="right menu">
+            <div class="item">
+                <h5 class="ui inverted header">
+                        <div class="ui avatar image">
+                          {% if request.user.is_authenticated and my_profile != None %}
+                          <a href="{% url 'user_profile' %}"><img src="{{ request.user.userprofle.avatar.url }}" alt=""></a>
+                          {% elif request.user.is_authenticated and my_profile == None %}
+                          <a href="{% url 'user_profile' %}"><img src="{% static 'images/default.png' %}" alt=""></a>
+                          {% else %}
+                          <img src="{% static 'images/default.png' %}" alt="">
+                          {% endif %}
+                        </div>
+
+                        {% if request.user.is_authenticated and my_profile != None %}
+                        <span>{{ request.user.userprofle.nickname }}</span>
+                        {% elif request.user.is_authenticated and my_profile == None %}
+                        <span>还没有设置昵称哟</span>
+                        {% else %}
+                        <span>游客你好</span>
+                        {% endif %}
+
+                    </h5>
+            </div>
+            <div class="item">
+              <a href="#" style="color:White">发布</a>
+            </div>
+            <div class="item">
+                {% if request.user.is_authenticated %}
+                  <a href="{% url 'logout' %}" style="color:White">退出</a>
+                {% else %}
+                  <a href="{% url 'register' %}" style="color:White">登录／注册</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="ui inverted segment container nav">
+        <div class="ui  three borderless  item  menu">
+          {% if 'best' not in request.path and 'hot' not in request.path %}
+            <a class="active item" href="{% url 'index' %}"> All </a>
+          {% else %}
+            <a class="item" href="{% url 'index' %}"> All </a>
+          {% endif %}
+
+            {% if  'hot' in request.path %}
+              <a class="active item" href="{% url 'index' cate='hot' %}"> Hot </a>
+            {% else %}
+                <a class="item" href="{% url 'index' cate='hot' %}"> Hot </a>
+            {% endif %}
+
+            {% if 'best' in request.path %}
+              <a href="{% url 'index' cate='best' %}" class="active item">Best</a>
+            {% else %}
+              <a href="{% url 'index' cate='best' %}" class="item">Best</a>
+            {% endif %}
+
+
+        </div>
+    </div>
+
+
+    <div class="ui basic segment container content">
+
+        <div class="ui three column grid">
+            {% for article in article_list %}
+            <div class="column">
+                <a class="ui fluid card" href="{% url 'detail' article.id %}">
+                    <div class="image">
+                        <img src="{{ article.img }}" alt="" style="height:200px;object-fit: cover;">
+                    </div>
+                </a>
+                {% if article.editor_choice %}
+                  <div class="title header" href="#" style="color:red">{{ article.title }}</div>
+                {% else %}
+                  <div class="title header" href="#">{{ article.title }}</div>
+                {% endif %}
+
+                <i class="icon grey unhide"></i>
+                <span style="color:#bbbbbb">{{ article.views }}</span>
+
+                <span class="" style="color:rgb(226, 226, 226)">|</span>
+
+                <i class="icon grey checkmark"></i>
+                <span style="color:#bbbbbb"> {{ article.likes }} people got it</span>
+
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <div class="ui center aligned very padded vertical segment container">
+        <div class="ui pagination menu">
+            {% if article_list.has_previous %}
+              <a href="?page={{ article_list.previous_page_number }}" class="item">
+                <i class="icon left red arrow"></i>
+              </a>
+            {% else %}
+            <a href="" class="disabled item">
+              <i class="icon left arrow"></i>
+            </a>
+            {% endif %}
+
+            {% for index_num in index_list %}
+                {% if article_list.number == index_num %}
+                    <a href="?page={{ index_num }}" class="active item">{{ index_num }}</a>
+                {% else %}
+                    <a href="?page={{ index_num }}" class="item">{{ index_num }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if  article_list.has_next %}
+            <a href="?page={{ article_list.next_page_number }}" class="item">
+              <i class="icon red right arrow"></i>
+            </a>
+            {% else %}
+            <a href="" class="item">
+              <i class="icon right arrow"></i>
+            </a>
+            {% endif %}
+
+        </div>
+    </div>
+</body>
+
+</html>

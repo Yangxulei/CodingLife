@@ -40,7 +40,7 @@ if __name__ == '__main__':
             txt += get_char(*im.getpixel((j, i)))
         txt += '\n'
 
-    print txt
+    print(txt)
 
     # 字符画输出到文件
     if OUTPUT:

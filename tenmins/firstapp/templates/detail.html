@@ -1,0 +1,204 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{ article.title }}</title>
+        <link rel="stylesheet" href="{% static 'css/semantic.css' %}" media="screen" title="no title" charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Raleway" rel="stylesheet">
+        <style media="screen">
+        p {
+            font-family: PingFang SC, Helvetica Neue, Helvetica, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+            font-size: 14px;
+            color: #4a4a4a;
+            text-align: left;
+            font-weight: 400;
+            line-height: 26px;
+          }
+        </style>
+
+    </head>
+    <body>
+        <div class="ui inverted top fixed menu borderless menu" style="background-color:#ff5144">
+            <div class="header item">
+                <div class="ui image">
+                  <a href="{% url 'index' %}">
+                    <img src="{% static 'images/tenlogo.png' %}" alt="">
+                  </a>
+                </div>
+            </div>
+
+            <div class="right menu">
+                <div class="item">
+                    <h5 class="ui inverted header">
+                            <div class="ui mini circular image">
+                                <img src="{% static 'images/default.png' %}" alt="">
+                            </div>
+                            {% if request.user.is_authenticated %}
+                              <span>{{ request.user.username }}</span>
+
+                            {% else %}
+                              <span>游客你好</span>
+
+                            {% endif %}
+
+                        </h5>
+                </div>
+
+                <div class="item">
+                  {% if request.user.is_authenticated %}
+                  <a href="{% url 'logout' %}" class="ui inverted circular button">退出</a>
+
+
+                  {% else %}
+                    <a href="{% url 'login' %}" class="ui inverted circular button">登录／注册</a>
+
+                  {% endif %}
+
+                </div>
+            </div>
+        </div>
+
+        <div class="ui vertical inverted detail segment"></div>
+
+        <div class="ui basic segment container" style="width:700px;border:none;box-shadow:none;margin-top:50px;">
+            <img src="{{ article.img }}" alt="" class="ui image"/>
+            <h1 class="ui header">{{ article.title }}</h1>
+            <i class="icon grey unhide"></i>
+            <span style="color:#bbbbbb">{{ article.views }}</span>
+            <span class="" style="color:rgb(226, 226, 226)">|</span>
+            <i class="icon grey checkmark"></i>
+            <span style="color:#bbbbbb">{{ all_ticket_count }}   people got it</span>
+
+            <p>
+              {{ article.content|linebreaksbr }}
+            </p>
+            {% if article.cate_choice == 'best' %}
+                <a href="{% url 'index' cate='best' %}" class="ui teal label">Best</a>
+            {% else %}
+                <a href="{% url 'index' cate='hot'%}" class="ui red label">Hot</a>
+
+            {% endif %}
+            <div class="ui divider"></div>
+
+
+
+            <form class="ui form" action="{% url 'detail_vote' id=article.id %}" method="post">{% csrf_token %}
+
+              {% if request.user.is_authenticated %}
+                    {% if user_vote_ticket_like != 0 %}
+                      <div class="ui labeled button" tabindex="0">
+                        <button type="submit" name="vote" value="like" class="ui red button">
+                          <i class="thumbs up icon"></i>Like
+                        </button>
+                        <a href="#anchor_name" class="ui basic label">{{ ticket_like_count }}</a>
+                      </div>
+                    {% else %}
+                      <div class="ui labeled button" tabindex="0">
+                        <button type="submit" name="vote" value="like" class="ui button">
+                          <i class="thumbs up icon"></i>Like
+                        </button>
+                        <a href="#" class="ui basic label">{{ ticket_like_count }}</a>
+                      </div>
+                    {% endif %}
+
+                  {% if user_vote_ticket_dislike != 0 %}
+                      <div class="ui labeled button" tabindex="0">
+                        <button type="submit" name="vote" value="dislike" class="ui blue button">
+                          <i class="thumbs down icon"></i>Hmm..
+                        </button>
+                        <a href="#" class="ui basic label">{{ ticket_dislike_count }}</a>
+                      </div>
+                  {% else %}
+                      <div class="ui labeled button" tabindex="0">
+                          <button type="submit" name="vote" value="dislike" class="ui button">
+                            <i class="thumbs down icon"></i>Hmm..
+                          </button>
+                          <a href="#" class="ui basic label">{{ ticket_dislike_count }}</a>
+                      </div>
+
+                  {% endif %}
+
+              {% else %}
+                  <div class="ui labeled button" tabindex="0">
+                      <button type="submit" name="vote" value="like" class="ui button">
+                        <i class="thumbs up icon"></i>Like
+                      </button>
+                      <a href="#" class="ui basic label">{{ ticket_like_count }}</a>
+                  </div>
+
+                  <div class="ui labeled button" tabindex="0">
+                      <button type="submit" name="vote" value="dislike" class="ui button">
+                        <i class="thumbs down icon"></i>Hmm..
+                      </button>
+                      <a href="#" class="ui basic label">{{ ticket_dislike_count }}</a>
+                  </div>
+
+
+              {% endif %}
+
+            </form>
+        </div>
+
+
+        <!-- Comments&Form's here -->
+        <div class="ui segment container" style="width:700px;border:none;box-shadow:none">
+            <h3 class="ui horizontal  divider header" style="">Comments</h3>
+            <div class="ui comments" style="border:none">
+                <!--这里补充评论列表代码-->
+                {% for comment in comments%}
+                <div class="comment">
+                  <a href="#" class="avatar">
+                    <img src="https://semantic-ui.com/images/avatar/small/jenny.jpg" alt="" />
+                  </a>
+                  <div class="content">
+                    <a href="#" class="author">{{ comment.publisher.username }}</a>
+                    <div class="metadata">
+                      <span class="date">{{ comment.created_date |date:"Y-m-d H:i:s"}}</span>
+                    </div>
+                    <div class="text">
+                      {{ comment.content }}
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% if request.user.is_authenticated %}
+
+              <!--提交评论的表单渲染-->
+              <form class="ui tiny form error" action='{% url 'detail_comment' article.id %}' method="post">{% csrf_token %}
+                <!--这里补充评论表单代码-->
+                {% if form.errors  %}
+                  <div class="ui error message">
+                    {{ form.errors }}
+                  </div>
+                  {% for field in form %}
+                  <div class="error field">
+                      {{ field.label }}
+                      {{ field }}
+                  </div>
+                  {% endfor %}
+
+                {% else %}
+                {% for field in form %}
+                <div class="field">
+                  {{ field.label }}
+                  {{ field }}
+                </div>
+                {% endfor %}
+
+                {% endif %}
+                <button type="submit" class="ui purple button" style="margin-top:20px">Click</button>
+              </form>
+
+            {% else %}
+
+            <h3 class="ui grey center aligned sub header">赶紧登录，说说你的想法!</h3>
+
+            {% endif %}
+
+        </div>
+    </body>
+</html>

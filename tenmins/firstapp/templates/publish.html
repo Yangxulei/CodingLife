@@ -1,0 +1,80 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>发布页面</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'css/semantic.css' %}" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="{% static  'css/list_custom.css' %}" media="screen" title="no title" charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  </head>
+  <body>
+    <div class="ui inverted top fixed menu borderless red menu">
+        <div class="header item">
+
+            <h3><a href="#" style="color:White">TEN MINS</a></h3>
+        </div>
+
+        <div class="right menu">
+            <div class="item">
+                <h5 class="ui inverted header">
+                        <div class="ui avatar image">
+                            <img src="{% static 'images/default.png' %}" alt="">
+                        </div>
+
+                        {% if request.user.is_authenticated  %}
+                        <span>{{ request.user.username }}</span>
+                        {% else %}
+                          <span>游客你好</span>
+                        {% endif %}
+
+                    </h5>
+            </div>
+            <div class="item">
+              <a href="#" style="color:White">发布</a>
+            </div>
+            <div class="item">
+                {% if request.user.is_authenticated %}
+                  <a href="{% url 'logout' %}" style="color:White">退出</a>
+                {% else %}
+                  <a href="{% url 'register' %}" style="color:White">登录／注册</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="ui vertical container basic segment" style="margin-top:80px;width:700px;border:none;box-shadow:none">
+      <form class="ui error form" action="{% url 'publish_post' %}" method="post">{% csrf_token %}
+
+        {% if form.errors %}
+          <div class="ui error message">
+            <div class="header">Action Forbidden</div>
+            {{ form.errors }}
+
+          </div>
+            {% for field in form %}
+                <div class="{{ field.errors | yesno:'error, ' }} field">
+                  {{ field.label }}
+                  {{ field }}
+                </div>
+            {% endfor %}
+        {% else %}
+         <div class="field">
+           {% for field in form %}
+                 <div class="field">
+                      {{ field.label }}
+                      {{ field }}
+                 </div>
+           {% endfor %}
+         </div>
+        {% endif %}
+
+        
+      <button type="submit" name="button" class="ui purple button">Click</button>
+      </form>
+    </div>
+  </body>
+</html>

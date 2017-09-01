@@ -1,0 +1,33 @@
+body {
+    background-color: rgb(245, 245, 245);
+    font-family: 'Raleway', sans-serif;
+}
+.ui.inverted.top.fixed.menu.borderless.red.menu {
+    background-color: #ff5144;
+}
+.ui.raised.container.segments{
+    margin-top: 80px;
+}
+.ui.head.basic.segment {
+    background-image: url('images/bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:150px;
+}
+.ui.butt.segment {
+    height:800px;
+}
+
+form {
+    position: absolute;left: 50%;
+    transform: translate(-50%,0);
+    width:450px;
+}
+
+.ui.circular.image.cover{
+    position: absolute;left: 50%;top: 50%;
+    transform: translate(-50%,-50%);
+    height: 100px;
+    width: 100px;
+
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>homework1.12</title>
+    <link rel="stylesheet" href="{% static 'css/semantic.css' %}">
+    <style media="screen">
+      body  {
+        background-image: url('{% static 'images/super_blur_back2.jpg' %}');
+        height: 700px;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+
+      .ui.segment.back {
+        background-color: red;
+        width: 600px;
+        height: 400px;
+        padding-left: 0;
+        padding-top: 0;
+        position: absolute;
+        transform: translate(-50%,-50%);
+        left: 50%;
+        top:50%;
+      }
+
+      .ui.basic.vertical.segment.photo {
+        background: url('{% static 'images/red_regi.jpg' %}');
+      }
+
+      .ui.basic.segment.one {
+        width: 200px;
+        height: 400px;
+        margin-top: 0;
+        background: url('{% static 'images/red_regi.jpg' %}');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position:center;
+      }
+
+      .ui.basic.segment.two {
+        box-sizing: border-box;
+        background-color: white;
+        width: 400px;
+        height: 400px;
+        position: absolute;
+        left: 200px;
+        top:-1px;
+      }
+
+      img {
+        position: absolute;
+        transform: translate(-50%,-50%);
+        left: 50%;
+        margin-top: 20px;
+      }
+
+      .ui.center.aligned.container {
+        margin-top: 60px;
+      }
+
+      .ui.text.borderless.menu {
+        margin-top: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ui segment back">
+
+      <div class="ui basic segment two">
+        <div class="ui text borderless menu">
+          <div class="right menu">
+            <div class="item">
+              <h4 class="ui header" style="color:red"><a href="{% url 'login' %}">登录</a></h4>
+            </div>
+          </div>
+        </div>
+
+        <form class="ui form error" method="post">
+
+                    {% if form.errors %}
+                        <div class="ui error message">
+                            {{ form.errors }}
+                        </div>
+
+                        {% for field in form  %}
+                            <div class="{{ field.errors|yesno:'error, ' }} field">
+                                {{ field.label }}
+                                {{ field }}
+                            </div>
+                        {% endfor %}
+
+                    {% else %}
+                        {% for field in form  %}
+                            <div class="field">
+                                {{ field.label }}
+                                {{ field }}
+                            </div>
+                        {% endfor %}
+
+                    {% endif %}
+
+                    {% csrf_token %}
+
+                    <button class="ui inverted red circular right floated button" type="submit">Done</button>
+                </form>
+
+      </div>
+
+      <div class="ui basic segment one">
+        <i class="big angle left icon" style="color:white"></i>
+        <div class="ui center aligned container">
+          <h3 class="ui header" style="color:white">Welcome to</h3>
+          <img src="{% static 'images/tenlogo.png' %}" alt="" class="ui image">
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
