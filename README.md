@@ -1,16 +1,16 @@
 # CodingLife
  
-一些好玩的   
-*词云*  
-//抽取文本形成词云  
-*News_Keyword_extraction*        
-//使用TextRank算法   
 
-*2048_python.py*    
-//状态机的概念. 用字典的模式实现状态和函数的对应. 可以加深对语言的理解. 其中矩阵的变换也很精巧
-
-*charcterPicture.py*    
-// 借助pillow和argparse 库的使用  
-
-*charcter_colorPicture*    
-// 通过借助 docopt 库与Pillow库来构建命令行解析器获取指定图像并将其转换成相应样式的彩色字符图像
+Project | Description
+--------|------------
+Python_Syntax|   python learning syntax
+CharacterPicture |  借助pillow和argparse 库的使用
+Character_ColorPicture | 通过借助 docopt 库与Pillow库来构建命令行解析器获取指定图像并将其转换成相应样式的彩色字符图像
+WordCount|        词频统计
+WordCloud|        词云
+News_Keyword_extraction |  新闻关键字抽取
+PDF2Word|    PDF转Word
+Spark之Twitter情感分析|  spark情感分析
+tenmins|    一个小网站
+WeatherAnalysis|  天气分析
+2048_python.py |  2048游戏

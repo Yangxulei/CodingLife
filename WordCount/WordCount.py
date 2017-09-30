@@ -7,7 +7,7 @@ import os
 import argparse
 from collections import Counter
 
-__all__ = ['WordFinder', 'Book']
+__all__ = ['WcdordFinder', 'Book']
 
 lemmas = {}
 with open('lemmas.txt') as fin:
