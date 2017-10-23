@@ -3,6 +3,7 @@
 
 Project | Description
 --------|------------
+Web前端 | web相关的学习
 Python_Syntax|   python learning syntax
 CharacterPicture |  借助pillow和argparse 库的使用
 Character_ColorPicture | 通过借助 docopt 库与Pillow库来构建命令行解析器获取指定图像并将其转换成相应样式的彩色字符图像

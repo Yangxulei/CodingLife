@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+</head>
+<body>
+
+
+<style>
+  input{
+    width:50px;
+  }
+</style>
+<script>
+  function calc(){
+  var num1= document.getElementById("num1").value;
+  var num2= document.getElementById("num2").value;
+  num1 = parseFloat(num1);
+  num2 = parseFloat(num2);
+  var result = num1+num2;
+  document.getElementById("result").value = result;
+
+}
+</script>
+  <input type="text" id="num1"> +
+
+  <input type="text" id="num2" >
+  =
+  <input type="text" id="result" >
+
+  <input type="button" value="运算" onclick="calc()">
+</body>
+</html>

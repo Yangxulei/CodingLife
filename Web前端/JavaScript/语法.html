@@ -1,0 +1,258 @@
+<html>
+<body>
+  <script src="语法.js"></script>
+
+  <button onclick="document.getElementById('text').style.display='none'">隐藏文本</button>
+  <button onclick="document.getElementById('text').style.display='block'">显示文本</button>
+  <p id="text">这是一段可以隐藏的文本</p>
+
+
+<br>
+<h1>  # 1-变量</h1>
+  <script>
+    var x = 10;
+    document.write("变量x的值为：" + x);
+    document.write("<br>");
+  </script>
+
+<h1>  # 2-进行调试</h1>
+  <script>
+  //alet方法
+    x = 10;
+  //  alert(1);
+    document.write("没有用var声明的变量x的值:"+x);
+  //  alert(2);
+
+    //console.log() 方法
+    console.log("x="+x);
+    document.write("没有用var声明的变量x的值:"+x);
+    console.log("end");
+    document.write("<br>");
+  </script>
+
+ <h1>#3- 基本数据类型： undefine，Boolean,Number,String，null </h1>
+ <script>
+  var x; //声明了变量x,但是没有赋值叫做 undefine
+  document.write('声明了，但是没有赋值的变量 x: '+x);
+// Boolean变量有两种值，分别是true或者false
+  var x=true;
+  var y=false;
+  document.write("布尔值:"+x);
+  document.write("<br>");
+  document.write("布尔值:"+y);
+  document.write("<br>");
+
+  //数字表示
+  var a=10; //十进制
+  var b=012;//第一位是0，表示八进制
+  var c=0xA;//0x开头表示十六进制
+  var d=3.14;//有小数点表示浮点数
+  var e=3.14e2;//使用e的幂表示科学技术法
+  document.write("十进制 10 的值: "+a);
+  document.write("<br>");
+  document.write("八进制 012 的值: "+b);
+  document.write("<br>");
+  document.write("十六进制 0xA 的值: "+c);
+  document.write("<br>");
+  document.write("浮点数 3.14 的值: "+d);
+  document.write("<br>");
+  document.write("科学记数法 3.14e2 的值: "+e);
+  document.write("<br>");
+
+  //字符串： 与java不同的是，javascript中没有字符的概念，只有字符串，所以单引号和双引号，都用来表示字符串。
+  var x='hello '; //单引号
+   var y="javascript"; //双引号
+   document.write("单引号的字符串:"+x);
+   document.write("<br>");
+   document.write("双引号的字符串:"+y);
+   document.write("<br>");
+
+   //动态类型： 变量的类型是动态的，当值是整数的时候，就是Number类型，当值是字符串的时候，就是String类型
+   var x=10; //Number类型
+   document.write("此时 x的值是 "+x+" 类型是数字");
+   document.write("<br>");
+   x = "hello javascript"; //String类型
+   document.write("此时 x的值是 "+x+" 类型是字符串");
+   document.write("<br>");
+
+ //变量类型判断：使用typeof来进行判断数据类型。正是因为变量是动态类型的，所以无法确定当前到底是哪种类型，这个时候，就可以使用typeof来进行判断
+  var x;
+  document.write('声明了但是未赋值的时候，类型是： '+typeof x);
+  document.write("<br>");
+  x=5;
+  document.write('赋值为5之后，类型是： '+typeof x);
+  document.write("<br>");
+  x=5.1;
+  document.write('赋值为5.1之后，类型是： '+typeof x);
+  document.write("<br>");
+  x=true;
+  document.write('赋值为true之后，类型是： '+typeof x);
+  document.write("<br>");
+  x="hello";
+  document.write('赋值为hello之后，类型是： '+typeof x);
+  document.write("<br>");
+</script>
+
+<h1>#4- 类型转换<br></h1>
+<script>
+//4.1伪对象概念：javascript是一门很有意思的语言，即便是基本类型，也是伪对象，所以他们都有属性和方法。变量a的类型是字符串，通过调用其为伪对象的属性length获取其长度
+  var a="hello javascript";
+  document.write("变量a的类型是:"+(typeof a));
+  document.write("<br>");
+  document.write("变量a的长度是:"+a.length);
+  document.write("<br>");
+//4.2无论是Number,Boolean还是String都有一个toString方法，用于转换为字符串
+  var a=10;
+  document.write("数字 "+a+" 转换为字符串"+a.toString());
+  document.write("<br>");
+
+  var b=true;
+  document.write("布尔 "+b+" 转换为字符串"+b.toString());
+  document.write("<br>");
+
+  var c="hello javascript";
+  document.write("字符串 "+c+" 转换为字符串 "+c.toString());
+  document.write("<br>");
+
+  //4.3Number转换为字符串的时候有默认模式和基模式两种
+  var a=10;
+   document.write('默认模式下，数字10转换为十进制的'+a.toString()); //默认模式，即十进制
+   document.write("<br>");
+
+   document.write('基模式下，数字10转换为二进制的'+a.toString(2)); //基模式，二进制
+   document.write("<br>");
+
+   document.write('基模式下，数字10转换为八进制的'+a.toString(8)); //基模式，八进制
+   document.write("<br>");
+
+   document.write('基模式下，数字10转换为十六进制的'+a.toString(16)); //基模式，十六进制
+   document.write("<br>");
+
+   //4.4javascript分别提供内置函数 parseInt()和parseFloat()，转换为数字/
+        //注：如果被转换的字符串，同时又数字和字符构成，那么parseInt会一直定位数字，直到出现非字符。 所以"10abc" 会被转换为 10
+   document.write("字符串的\"10\"转换为数字的:"+parseInt("10")); //转换整数
+   document.write("<br>");
+   document.write("字符串的\"3.14\"转换为数字的:"+parseFloat("3.14"));//转换浮点数
+   document.write("<br>");
+   document.write("字符串的\"10abc\"转换为数字的:"+parseInt("10abc")); //判断每一位，直到发现不是数字的那一位
+   document.write("<br>");
+
+   document.write("字符串的\"hello javascript\"转换为数字的:"+parseInt("hello javascript")); //如果完全不包含数字，则返回NaN - Not a Number
+   document.write("<br>");
+
+   //4.4 转换为Boolean，使用内置函数Boolean() 转换为Boolean值
+   /*
+   当转换字符串时：
+   非空即为true
+   当转换数字时：
+   非0即为true
+   当转换对象时：
+   非null即为true
+   */
+    document.write("空字符串''转换为布尔后的值:"+Boolean(""));  //空字符串
+    document.write("<br>");
+    document.write("非空字符'hello javascript '串转换为布尔后的值:"+Boolean("hello javascript"));  //非空字符串
+    document.write("<br>");
+    document.write("数字 0 转换为布尔后的值:"+Boolean(0));  //0
+    document.write("<br>");
+    document.write("数字 3.14 转换为布尔后的值:"+Boolean(3.14)); //非0
+    document.write("<br>");
+    document.write("空对象 null 转换为布尔后的值:"+Boolean(null));  //null
+    document.write("<br>");
+    document.write("非对象 new Object() 转换为布尔后的值:"+Boolean(new Object()));  //对象存在
+    document.write("<br>");
+
+    //4.5 Number()和parseInt()一样，都可以用来进行数字的转换
+    /*区别在于，当转换的内容包含非数字的时候，
+    Number() 会返回NaN(Not a Number)
+    parseInt() 要看情况，
+    - 如果以数字开头，就会返回开头的合法数字部分，
+    - 如果以非数字开头，则返回NaN
+    */
+    document.write("通过Number() 函数转换字符串'123' 后得到的数字："+Number("123"));   //正常的
+   document.write("<br>");
+   document.write("通过Number() 函数转换字符串'123abc' 后得到的数字："+Number("123abc"));   //包含非数字
+   document.write("<br>");
+   document.write("通过Number() 函数转换字符串'abc123' 后得到的数字："+Number("abc123"));   //包含非数字
+   document.write("<br>");
+
+   document.write("通过parseInt() 函数转换字符串'123' 后得到的数字："+parseInt("123"));   //正常的
+   document.write("<br>");
+   document.write("通过parseInt() 函数转换字符串'123abc' 后得到的数字："+parseInt("123abc"));   //包含非数字,返回开头的合法数字部分
+   document.write("<br>");
+   document.write("通过parseInt() 函数转换字符串'abc123' 后得到的数字："+parseInt("abc123"));   //包含非数字,以非数字开头，返回NaN
+   document.write("<br>");
+
+   //4.6 String()和toString()的区别
+   /*
+   String()和toString()一样都会返回字符串，区别在于对null的处理
+   String()会返回字符串"null"
+   toString() 就会报错，无法执行
+   */
+   var a = null;
+   document.write('String(null) 把空对象转换为字符串：'+String(a));
+   document.write("<br>");
+   document.write('null.toString() 就会报错，所以后面的代码不能执行');
+   document.write(a.toString());
+   document.write("因为第5行报错，所以这一段文字不会显示");
+   document.write("<br>");
+</script>
+
+
+<h1>#5-函数</h1>
+<script>
+  //5.1
+  /*
+  function关键字用于定义一个函数
+  print即函数的名称
+  ()表示参数列表，像这样就指没有参数
+  { 表示函数开始
+  } 表示函数结束
+  光有函数的定义，还不够，它不会自动执行，还需要进行第5行的调用
+  */
+  function print(){
+    document.write("这一句话是由一个自定义函数打印");
+  }
+  print();
+  document.write("<br>");
+
+  //5.2 带参数的函数
+  function print(message){
+    document.write(message);
+  }
+  print("第一句话");
+  print("<br>");
+  print("第二句话");
+  print("<br>")
+  //5.3 带返回值的函数
+  function print(message){
+    document.write(message);
+  }
+
+  function calc(x,y){
+    return x+y;
+  }
+  var sum = calc(500,20);
+  print(sum);
+  print("<br>")
+</script>
+
+<h4># 练习</h4>
+<script>
+  function get(){
+    var value = document.getElementById("num1").value;
+    document.getElementById("result").value="从num1中取到的值:"+value;
+}
+</script>
+
+  <input type="text" id="num1" value="1">
+  <br>
+  <input type="text" id="result" value="">
+  <br>
+  <input type="button" value="取值" onclick="get()" >
+  <br>
+  <a href="计算器.html">计算器练习</a>
+  <br>
+
+</body>
+</html>
