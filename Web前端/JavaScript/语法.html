@@ -253,6 +253,187 @@
   <br>
   <a href="计算器.html">计算器练习</a>
   <br>
+<h1>6-作用域</h1>
+<script>
+    //参数的作用域就在这个函数内部，超出函数就看不见该参数了
+    function f1(a){
+     document.write('参数的作用域在函数以内，其值是 '+a);//参数a的作用范围，所以打印出来是5；
+  }
+
+  function f2(){
+     document.write('在函数里不能访问其他函数的参数'+a); //不在参数a的作用范围，是一个未声明的变量，无法打印
+  }
+
+  f1(5);
+  f2();
+  document.write('<br>')
+  document.write('在函数外也不能访问'+a);//也不在参数a的作用范围，是一个未声明的变量，无法打印
+  document.write('<br>')
+
+  //全局变量的作用域
+  <script>
+    var a = 0; //定义在函数前面，即全局变量，所有函数都可以访问
+
+    function f1(){
+      document.write('通过函数f1 设置全局变量a的值 为 5');
+      a = 5; //能够访问
+    }
+
+    function f2(){
+      document.write('通过函数f2 访问并打印全局变量a的值 '+a); //能够访问
+    }
+
+    f1(); //通过f1，设置a的值
+    document.write('<br>');
+    f2(); //通过f2,  打印a的值
+</script>
+
+<h1>7-事件</h1>
+<script>
+//事件是javascript允许html与用户交互的行为。 用户任何对网页的操作，都会产生一个事件。 事件有很多种，比如鼠标移动，鼠标点击，键盘点击等等。
+  function helloworld() {
+    alert("hello js")
+  }
+</script>
+<button type="button" name="button" onclick="helloworld()">click me</button>
+
+<h1>8-算数运算符</h1>
+<script>
+  function p(s) {
+    document.write(s);
+    document.write("<br>");
+    p("1+2="+ (1+2));
+    p("5-3="+ (5-3));
+    p("3*2="+ (3*2));
+    p("9/3="+ (9/3));
+    p("10%3="+ (10%3));
+    document.write("<br>");
+  }
+  //自增自减运算符
+  var a = 5;
+  document.write('a++ 是先取值，再运算，所以打印出来是：'+a++); //先取值 ，即5
+
+  document.write("<br>");
+  var b = 5;
+  document.write('++b 是先运算，再取值，所以打印出来是：'+ ++b); //先运算，再取值，即6
+
+  //=，+=，-=，*=，/=，%= x=5 是 最基本的赋值运算符，即把右边的值，赋给左边的变量x。
+  document.write('当+两边都是数字的时候，+就是加法运算符，所以1+2='+(1+2));
+  document.write("<br>");
+  document.write('当+任意一边是字符串的时候，+就是字符串连接符，所以1+\"2\"='+ (1+"2"));
+//基本逻辑运算符
+      /*
+    基本逻辑运算符 包含如下 ：
+    == != > >=
+    返回一个Boolean类型的值，true或者false
+      */
+      function p(s){
+        document.write(s);
+        document.write("<br>");
+      }
+
+    p("1==2: "+(1==2));
+    p("1!=2: "+(1!=2));
+    p("1>2: "+(1>2));
+    p("1<2: "+(1<2));
+    p("1>=2: "+(1>=2));
+    document.write("<br>");
+
+//绝对等，绝对不等
+    function p(s){
+      document.write(s);
+      document.write("<br>");
+    }
+
+    p("1=='1': "+(1=='1'));
+    p("1==='1': "+(1==='1'));
+ //三目运算符
+ var age = 15;
+ var movie = age<18?"卡通":"你懂的";
+ document.write('使用?: 三相运算法进行判断。 <br>');
+ document.write('age<18?"卡通":"你懂的" <br>表示当年纪小于18的时候，就看卡通，否则就看 你懂得<br>');
+ document.write('而age变量的值是15，所以返回 '+movie);
+</script>
+
+
+
+<h1>9-条件语句</h1>
+<script>
+    //条件语句
+    var age = 15;
+
+    if(age<18){
+      document.write("如果年纪小于18，就看 卡通");
+    }else if(age<22){
+       document.write("大于等于18，并且小于22，就看 你懂的");
+     }else{
+       document.write("大于等于22就看 新闻联播");
+       document.write("<br>");
+     }
+</script>
+
+
+
+<h1>10-循环语句</h1>
+<script>
+   //常用的循环语句有： for, while, do-while, for-each
+
+   //10.1-使用for循环打印 0 到 4
+   function p(s) {
+     document.write(s);
+     document.write("<br>");
+   }
+   for (var i = 0; i < p(i); i++) {
+     p(i);
+   }
+
+   //10.2 - while
+   document.write("使用while循环打印 0 到 4<br>");
+    function p(s){
+      document.write(s);
+      document.write("<br>");
+    }
+
+    var i = 0;
+    while(i<5){
+      p(i);
+      i++;
+    }
+
+    // 10.3- do while
+    function p(s){
+      document.write(s);
+      document.write("<br>");
+    }
+    document.write("使用do-while循环打印 0 到 4<br>");
+    var i = 0;
+    do {
+      p(i);
+      i++;
+    } while (i<5);
+
+    //10.4- for-each
+    
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>
