@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script>
+function calc(){
+
+  var year = document.getElementById("year").value;
+  var month = document.getElementById("month").value;
+  var day = document.getElementById("day").value;
+  var today=new Date();
+  var birthday=new Date();
+  birthday.setFullYear(year );
+  birthday.setMonth(month -1);
+  birthday.setDate(day);
+  var nowTime = today.getTime();
+  var birthTime = birthday.getTime();
+  console.log(nowTime);
+  console.log(birthday);
+  var age = (nowTime -birthTime) /(1000*60*60*24*365);
+  age= Math.round(age);
+
+  document.getElementById("age").innerHTML=age;
+
+}
+    </script>
+    请输入出生年月日<br>
+    年份
+    <select id="year">
+    <script>
+    for(i=1900;i<2010;i++){
+      document.write("<option value='"+i+"'>"+i+"</option>");
+    }
+    </script>
+    </select >
+    月份
+    <select id="month">
+    <script>
+    for(i=1;i<13;i++){
+      document.write("<option value='"+i+"'>"+i+"</option>");
+    }
+    </script>
+    </select>
+    日
+    <select  id="day">
+    <script>
+    for(i=1;i<32;i++){
+      document.write("<option value='"+i+"'>"+i+"</option>");
+    }
+    </script>
+    </select>
+    <br>
+    <br>
+    <button onclick="calc()">计算年龄</button>
+    <br>
+    <br>
+    今年<span id="age">100</span> 岁
+  </body>
+</html>

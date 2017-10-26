@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+      <script>
+        function getValue(id){
+         return document.getElementById(id).value;
+        }
+        function setValue(id,value){
+         document.getElementById(id).value=value;
+        }
+        function sortByWord(){
+          var src = getValue("src");
+          var a = src.split(" ");
+          a.sort();
+          var result1 = a.join(" ");
+          setValue("result1",result1);
+          a.reverse();
+          var result2 = a.join(" ");
+          setValue("result2",result2);
+        }
+        function sortByAlpha(){
+          var src = getValue("src");
+          var a = new Array();
+          for(var i=0; i<src.length;i++){
+              var c = src.charAt(i);
+              a.push(c);
+          }
+          a.sort();
+          var result1 = a.join("");
+          setValue("result1",result1);
+          a.reverse();
+          var result2 = a.join("");
+          setValue("result2",result2);
+        }
+
+        </script>
+          <table>
+            <tr>
+              <td>随机输入英文字符串:</td>
+              <td><textarea id="src">what a great day</textarea></td>
+            </tr>
+            <tr>
+              <td>正排序结果：</td>
+              <td><textarea id="result1"></textarea></td>
+            </tr>
+
+            <tr>
+            <tr>
+                <td>倒排序结果：</td>
+                <td><textarea id="result2"></textarea></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="" align="left"><button onclick="sortByAlpha()">按照字母排序</button>
+            <br>
+            <br>
+            <button onclick="sortByWord()">按照单词排序</button>
+            </td>
+            </tr>
+            </table>
+  </body>
+</html>

@@ -34,7 +34,7 @@
  <script>
   var x; //声明了变量x,但是没有赋值叫做 undefine
   document.write('声明了，但是没有赋值的变量 x: '+x);
-// Boolean变量有两种值，分别是true或者false
+  // Boolean变量有两种值，分别是true或者false
   var x=true;
   var y=false;
   document.write("布尔值:"+x);
@@ -520,6 +520,7 @@
     var z =  x.split(" ",2);
     document.write('通过空格分隔split(" ",2),得到数组，并且只保留前两个'+z);
 
+
     //replace(search,replacement)找到满足条件的子字符串search，替换为replacement
     /*默认情况下只替换找到的第一个子字符串，如果要所有都替换，需要写成：
 
@@ -542,10 +543,211 @@
     var z = x.replace(regS, "o");
     p('替换掉所有的 a:  '+z);
 
+    //需要注意的是，所有返回字符串类型的方法，返回的都是基本类型的String
+    function p(s){
+      document.write(s);
+      document.write("<br>");
+    }
+      var x = new String("Hello JavaScript");
+
+      var temp = x.charAt(0);
+      p('charAt返回的值'+temp);
+      p('其类型是'+ typeof temp );
+
+      var temp = x.concat("!!!");
+      p('concat返回的值'+temp);
+      p('其类型是'+ typeof temp );
+
+      var temp = x.substring(0,5);
+      p('substring返回的值'+temp);
+      p('其类型是'+ typeof temp );
+    }
+
+//数组
+  /*
+创建一个数组对象
+创建数组对象的3种方式：
+1. new Array() 创建长度是0的数组
+2. new Array(5); 创建长度是5的数组,，但是其每一个元素都是undefine
+3. new Array(3,1,4,1,5,9,2,6); 根据参数创建数组
+  */
+  function p(s,v){
+    document.write(s+' '+v);
+    document.write("<br>");
+  }
+
+  var x = new Array(); //创建长度是0的数组
+  p('通过 new Array()创建一个空数组:',x);
+  x = new Array(5); //创建长度是5的数组,，但是其每一个元素都是undefine
+  p('通过 new Array(5)创建一个长度是5的数组:',x);
+  p('像new Array(5) 这样没有赋初值的方式创建的数组，每个元素的值都是:',x[0]);
+  x = new Array(3,1,4,1,5,9,2,6); //根据参数创建数组
+  p('创建有初值的数组new Array(3,1,4,1,5,9,2,6) :',x);
+
+  //属性length 获取一个数组的长度
+  var x = new Array(3,1,4,1,5,9,2,6); //根据参数创建数组
+  p('当前数组是:'+x);
+  p('通过.length获取当前数组的长度:'+x.length);
+
+  // 遍历有两种方式
+  // 1.结合for循环，通过下标遍历
+  // 2.使用增强for in循环遍历
+  // 需要注意的是，在增强for in中，i是下标的意思。
+  var x = new Array(3,1,4);
+  p('当前数组是:'+x);
+  p("使用普通的for循环遍历数组");
+  for(i=0;i<x.length;i++){  //普通for循环
+    p(x[i]);
+  }
+  p("使用增强for循环遍历数组");
+  for(i in x){  //for in 循环
+    p(x[i]);
+  }
+  //方法 concat 连接两个数组
+  var x = new Array(3,1,4);
+  var y = new Array(1,5,9,2,6);
+  p('数组x是:'+x);
+  p('数组y是:'+y);
+
+  var z = x.concat(y);
+  p('使用concat连接数组x和y');
+  p('数组z是:'+z);
+
+  //方法 join 通过指定分隔符，返回一个数组的字符串表达
+  var x = new Array(3,1,4);
+  p('数组x是:'+x);
+  var y = x.join();
+  p('y = x.join() 得到的是数组x的字符串表达，其值是'+y+" 其类型是 :" +(typeof y));
+  var z = x.join("@");
+  p('z = x.join("@");是x的字符串表达，不过分隔符不是默认的"," 而是"@" : '+z);
+
+  //方法 push pop,分别在最后的位置插入数据和获取数据(获取后删除) 就像先入后出的栈一样
+  var x = new Array(3,1,4);
+  p('数组x是:'+x);
+
+  x.push(5);
+  p('向x中push 5,得到 ' + x);
+  var e = x.pop();
+  p('从x中pop一个值出来，其值是 ' + e);
+
+  p('pop之后，x数组的值是:'+x);
+  p("<br>");
+
+  //方法 unshift shift ,分别在最开始的位置插入数据和获取数据(获取后删除)
+  var x = new Array(3,1,4);
+  p('数组x是:'+x);
+  x.unshift (5);
+  p('对数组 unshift 值5(在最前面加)，数组变为:' + x);
+  var e = x.shift ();
+  p('从数组中 shift 一个数(从最前面取)，其值是:' + e);
+  p('shift之后，数组变为:' + x);
+
+  //对数组进行排序
+  var x = new Array(3,1,4,1,5,9,2,6);
+  p('数组x是:'+x);
+  x.sort();
+  p('使用sort排序后的数组x是:'+x);
+
+  //数组进行默认排序
+  /*sort()默认采用正排序，即小的数排在前面。 如果需要采用自定义排序的算法，就把比较器函数作为参数传递给sort()。
+  比较器函数:
+
+  function comparator(v1,v2){
+     return v2-v1;  //v2-v1表示大的放前面，小的放后面
+  }
+
+
+  调用sort函数的时候，把这个比较器函数comparator作为参数传递进去即可
+
+  x.sort(comparator);
+  */
+  function comparator(v1,v2){
+   return v2-v1;
+  }
+
+  var x = new Array(3,1,4,1,5,9,2,6);
+  p('数组x是:'+x);
+  x.sort(comparator);
+  p('使用sort 进行自定义倒排序后的数组x是:'+x);
+
+  //对数组内容进行翻转
+    var x = new Array(3,1,4,1,5,9,2,6);
+    p('数组x是:'+x);
+    x.reverse();
+    p('使用reverse()函数进行反转后的值是:'+x);
+
+    //获取子数组
+
+    var x = new Array(3,1,4,1,5,9,2,6);
+    p('数组x是:'+x);
+    var y = x.slice(1);
+    p('x.slice(1)获取的子数组是:'+y);
+    var z = x.slice(1,3);
+    p('x.slice(1,3)获取的子数组是:'+z);
+    p('第二个参数取不到');
+
+    //插入和删除数组：方法 splice (不是 slice) 用于删除数组中的元素奇葩的是 ，它还能用于向数组中插入元素
+
+    var x = new Array(3,1,4,1,5,9,2,6);
+    p('数组x是:'+x);
+    x.splice (3,2);//从位置3开始 ，删除2个元素
+    p('x.splice (3,2) 表示从位置3开始 ，删除2个元素:'+x);
+    x.splice(3,0,1,5);
+    p('x.splice(3,0,1,5) 从位置3开始，删除0个元素，但是插入1和5,最后得到:'+x);
+
 </script>
 
+<h1>#13-日期</h1>
+<script>
+  //通过通过new Date创建一个日期对象，这个对象就表示当前日期(现在)
+  var d = new Date();
+  document.write('new Date():'+d);
+  document.write("<br>")
+
+  //分别获取年/月/日,需要注意的是，getMonth()返回的月数，是基零的，0代表1月份
+  document.write('分别获取年月日: ');
+  document.write(d.getFullYear());
+  document.write("/");
+  document.write(d.getMonth()+1);
+  document.write("/");
+  document.write(d.getDate());
+
+  //分别获取时:分:秒:毫秒
+  document.write("分别获取时:分:秒:毫秒 ");
+   document.write(d.getHours());
+   document.write(":");
+   document.write(d.getMinutes());
+   document.write(":");
+   document.write(d.getSeconds());
+   document.write(":");
+   document.write(d.getMilliseconds());
+
+   //一周的第几天 通过getDay()获取，今天是本周的第几天 与getMonth()一样，返回值是基0的。
+   var day=new Date().getDay(); //通过日期对象获取数字形式的星期几
+   var weeks = new Array("星期天","星期一","星期二","星期三","星期四","星期五","星期六");
+   document.write("今天是 ： "+weeks[day]);
+
+   //获取从1970/1/1 08:00:00 至今的毫秒数
+   var time = new Date().getTime();
+   document.write("从1970/1/1 08:00:00 到今天的毫秒数： "+ time);
+
+  //修改日期和时间把日期对象设置为2012/12/12 00:00:00
+  var d=new Date();
+  document.write("修改日期对象的值为世界末日:<br>");
+  d.setFullYear(2012);
+  d.setMonth(11); //月份时基0的，所以11表示12月
+  d.setDate(12);
+
+  d.setHours(0);
+  d.setMinutes(0);
+  d.setSeconds(0);
+
+  document.write(d);
 
 
+
+
+</script>
 
 
 
