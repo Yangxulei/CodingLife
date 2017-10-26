@@ -413,13 +413,136 @@
     } while (i<5);
 
     //10.4- for-each
-    
+
 </script>
 
+<h1>11-错误处理-条件语句</h1>
+<script>
+   //11.1JavaScript提供了一种try catch的错误处理机制，当有错误抛出的时候，可以catch住。
+   function f1(){
+  //函数f1是存在的
+    }
+    try{
+       document.write("试图调用不存在的函数f2()<br>");
+        f2();  //调用不存在的函数f2();
+    }
+    catch(err){
+       document.write("捕捉到错误产生:");
+        document.write(err.message);
+    }
+
+    document.write("<p>因为错误被捕捉了，所以后续的代码能够继续执行</p>");
+    document.write("<br>")
+</script>
+<h1>12-对象：数字，字符串，数组，日期，Math</h1>
+<script>
+    //字符串：与Number类似的，可以通过new String()创建一个String对象
+    var x = "5";
+    var y = new String(x);
+    document.write("变量x的值是:"+x);
+    document.write("<br>");
+    document.write("变量x的类型是:"+(typeof x));
+    document.write("<br>");
+    document.write("变量y的值是:"+y);
+    document.write("<br>");
+    document.write("变量y的类型是:"+(typeof y));
+    document.write("<br>");
+    //获取字符串的长度
+    var y = new String("hello world")
+    document.write("y 的长度为"+y.length);
+
+    //charAt 返回指定位置的字符,charCodeAt 返回指定位置的字符对应的Unicode码
+    var y = new String("Hello JavaScrpt");
+    document.write("字符串y的值:"+y);
+    document.write("<br>");
+    document.write('通过 charAt(0)获取位置0的字符串： '+y.charAt(0)); //返回H
+    document.write("<br>");
+    document.write('通过 charCodeAt(0)获取位置0的字符的 Unicode码 ：'+y.charCodeAt(0)); //返回H对应的Unicode码 72
+    document.write("<br>");
+
+    //字符串拼接：concat用于进行字符串拼接
+    var x = new String("Hello ");
+    var y = new String("Javascript");
+
+    document.write( '字符串x的值: '+x);
+    document.write('<br>');
+    document.write( '字符串y的值: '+y);
+    document.write('<br>');
+    document.write( '通过函数concat()把x和y连接起来: ' +  x.concat(y) );
 
 
+     //indexOf 返回子字符串第一次出现的位置 ,lastIndexOf 返回子字符串最后一次出现的位置
+    var y = new String("Hello JavaScript");
+    document.write( '字符串y的值: '+y);
+    document.write('<br>');
+    document.write('通过 indexOf ("a")获取子字符"a" 第一次出现的位置 '+y.indexOf ("a"));
+    document.write('<br>');
+    document.write('通过 lastIndexOf ("a")获取子字符"a" 最后出现的位置 '+y.lastIndexOf ("a"));
 
+    //localeCompare 比较两段字符串是否相同，0即表示相同，非0表示不同
+    var x = new String("Hello");
+    var y = new String("Hello");
+    var z = new String("aloha");
 
+    document.write( '字符串x的值: '+x);
+    document.write('<br>');
+    document.write( '字符串y的值: '+y);
+    document.write('<br>');
+    document.write( '字符串z的值: '+z);
+    document.write('<br>');
+
+    document.write('通过 localeCompare()判断 x和y是否相等 '+x.localeCompare(y));
+    document.write('<br>');
+    document.write('通过 localeCompare()判断 x和z是否相等 '+x.localeCompare(z));
+    document.write('<br>');
+
+    document.write('0 表示相等<br>');
+    document.write('1 表示字母顺序靠后<br>');
+    document.write('-1 表示字母顺序靠前<br>');
+
+    //substring 截取一段子字符串 注： 第二个参数，取不到
+    var x = new String("Hello JavaScript");
+    document.write( '字符串x的值: '+x);
+    document.write('<br>');
+    document.write('x.substring (0,3) 获取位0到3的字符串： '+x.substring (0,3) );
+    document.write('<br>');
+    document.write('左闭右开，取得到0，去不到3');
+
+    //split 根据分隔符，把字符串转换为数组。 注： 第二个参数可选，表示返回数组得长度
+    var x = new String("Hello This Is JavaScript");
+    document.write( '字符串x的值: '+x);
+    document.write('<br>');
+
+    var y =  x.split(" ");
+    document.write('通过空格分隔split(" "),得到数组'+y);
+    document.write("<br>");
+
+    var z =  x.split(" ",2);
+    document.write('通过空格分隔split(" ",2),得到数组，并且只保留前两个'+z);
+
+    //replace(search,replacement)找到满足条件的子字符串search，替换为replacement
+    /*默认情况下只替换找到的第一个子字符串，如果要所有都替换，需要写成：
+
+    注: 默认情况下只替换找到的第一个子字符串，如果要所有都替换，需要写成：
+        x.replace(/a/g, "o");
+        或者
+        var regS = new RegExp("a","g");
+        x.replace(regS, "o");
+      */
+      function p(s){
+      document.write(s);
+      document.write("<br>");
+  }
+
+    var x = new String("Hello JavaScript");
+    p('这个是原字符串: '+x);
+    var y = x.replace("a","o");
+    p('只替换第一个 a:  '+y);
+    var regS = new RegExp("a","g");
+    var z = x.replace(regS, "o");
+    p('替换掉所有的 a:  '+z);
+
+</script>
 
 
 
