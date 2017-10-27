@@ -743,9 +743,46 @@
   d.setSeconds(0);
 
   document.write(d);
+</script>
 
+<h1>14#-自定义对象</h1>
+/*
+在JavaScript中可以自定义对象，添加新的属性，添加新的方法
+*/
+<script>
+  var hero = new Object();
+  hero.name = "盖伦"; //定义一个属性name，并且赋值
+  hero.kill = function(){
+    document.write(hero.name + " 正在杀敌" ); //定义一个函数kill
+}
 
+hero.kill(); //调用函数kill
 
+/*通过new Object创建对象有个问题，就是每创建一个对象，都得重新定义属性和函数。这样代码的重用性不好
+那么，才用另一种方式，通过function设计一种对象。 然后实例化它 。
+这种思路很像Java里的设计一种类，但是 javascript没有类，只有对象，所以我们叫设计一种对象
+*/
+
+function Hero(name){
+  this.name = name;
+  this.kill = function(){
+     document.write(this.name + "正在杀敌<br>");
+  }
+}
+
+var gareen = new Hero("盖伦");
+gareen.kill();
+
+var teemo = new Hero("提莫");
+teemo.kill();
+
+//为已经存在的对象，增加新的方法现在Hero对象已经设计好了，但是我们发现需要追加一个新的方法keng(),那么就需要通过prototype实现这一点
+Hero.prototype.keng = function(){
+  document.write(this.name + "正在坑队友<br>");
+}
+
+gareen.keng();
+teemo.keng();
 
 </script>
 

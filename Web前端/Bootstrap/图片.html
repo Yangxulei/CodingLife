@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <style>
+      div{
+        margin:5px;
+        width: 50px; !important
+      }
+    </style>
+  </head>
+  <body>
+    <h3>圆角</h3>
+    <img src="http://how2j.cn/example.gif" class="img-rounded">
+
+      <div class="input-group" style="width:20px">
+        <span class="input-group-addon" id="basic-addon1">@</span>
+        <input type="text" class="form-control" placeholder="用户名" aria-describedby="basic-addon1">
+      </div>
+
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="邮箱" aria-describedby="basic-addon2">
+        <span class="input-group-addon" id="basic-addon2">@12306.com</span>
+      </div>
+
+      <div class="input-group">
+        <span class="input-group-addon">$</span>
+        <input type="text" class="form-control"  placeholder="金额" aria-label="Amount (to the nearest dollar)">
+        <span class="input-group-addon">.00</span>
+      </div>
+
+      <h3>整合下拉菜单</h3>
+      <div class="input-group">
+     <div class="input-group-btn">
+       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">搜索<span class="caret"></span></button>
+       <ul class="dropdown-menu" role="menu">
+         <li><a href="#">Google</a></li>
+         <li><a href="#">百度</a></li>
+         <li><a href="#">搜狗</a></li>
+         <li class="divider"></li>
+         <li><a href="#">人民搜索</a></li>
+       </ul>
+     </div>
+     <input type="text" class="form-control" aria-label="...">
+   </div>
+
+   <div class="input-group">
+     <input type="text" class="form-control" aria-label="...">
+     <div class="input-group-btn">
+       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">搜索<span class="caret"></span></button>
+       <ul class="dropdown-menu dropdown-menu-right" role="menu">
+         <li><a href="#">Google</a></li>
+         <li><a href="#">百度</a></li>
+         <li><a href="#">搜狗</a></li>
+         <li class="divider"></li>
+         <li><a href="#">人民搜索</a></li>
+       </ul>
+     </div>
+   </div>
+
+<div style="height:120px"></div>
+
+
+  </body>
+</html>
